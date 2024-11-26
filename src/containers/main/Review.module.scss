@@ -1,0 +1,219 @@
+/* main intro style scss */
+
+.section{
+    width:100%;
+    background:#F5F5F5;
+    padding:120px 0;
+
+    > h6{
+        font-size:40px;
+        margin-bottom:40px;
+        text-align: center;
+    }
+}
+
+.boxLeft{
+    width:1200px;
+    height:auto;
+    margin:auto;
+    position:relative;
+
+    > div{
+        position:absolute;
+        top:50%;
+        left:60px;
+        transform:translateY(-50%);
+        padding:20px 34px;
+        background:#fff;
+        width:416px;
+        height:260px;
+
+        > h6{
+            font-size:20px;
+            line-height:2.6;
+        }
+
+        > p{
+            font-size:18px;
+            color:#666;
+
+            b{
+                font-weight:bold;
+            }
+        }
+    }
+
+    & + div{
+        margin-top:35px;
+    }
+}
+
+.boxRight{
+    width:1200px;
+    height:auto;
+    margin:auto;
+    position:relative;
+
+    & + div{
+        margin-top:35px;
+    }
+
+    > div{
+        position:absolute;
+        top:50%;
+        right:60px;
+        transform:translateY(-50%);
+        padding:20px 25px;
+        background:#fff;
+        width:416px;
+        height:260px;
+
+        > h6{
+            font-size:20px;
+            line-height:2.6;
+        }
+
+        > p{
+            font-size:18px;
+            color:#666;
+
+            b{
+                font-weight:bold;
+            }
+        }
+    }
+
+    & + div{
+        margin-top:35px;
+    }
+}
+
+.moImg{
+    display:none;
+}
+@media (max-width:1240px){
+     .boxLeft{
+        width:90%;
+        img{
+            width:100%;
+            height:auto;
+        }
+        > div{
+            left:30px;
+            height:auto;
+            width:auto;
+            padding:auto;
+
+            h6{
+                font-size:16px;
+            }
+
+            p{
+                font-size:14px;
+            }
+        }
+
+       
+    }
+    .boxRight{
+        width:90%;
+
+        img{
+            width:100%;
+            height:auto;
+        }
+
+        > div{
+            right:30px;
+            height:auto;
+            width:auto;
+            padding:auto;
+
+            h6{
+                font-size:16px;
+            }
+
+            p{
+                font-size:14px;
+            }
+        }
+    }
+}
+
+@media (max-width:768px){
+    .pcImg{
+        display:none;
+    }
+    .moImg{
+        display:block;
+        width:100%;
+        height:auto;
+    }
+
+    .boxLeft{
+        > div{
+            width:100%;
+            height:auto;
+            position:initial;
+            transform:initial;
+            text-align: center;
+            padding:20px 15px;
+
+            h6{
+                font-size:20px;
+            }
+            p{
+                font-size:18px;
+            }
+        }
+    }
+
+    .boxRight{
+        > div{
+            width:100%;
+            height:auto;
+            position:initial;
+            transform:initial;
+            text-align: center;
+            padding:20px 15px;
+
+            h6{
+                font-size:20px;
+            }
+            p{
+                font-size:18px;
+            }
+        }
+    }
+}
+
+@media (max-width:499px){
+    .section{
+        padding:40px 0;
+
+        > h6{
+            font-size:32px;
+        }
+    }
+    .boxLeft{
+        > div{
+            h6{
+                font-size:18px;
+            }
+            p{
+                font-size:14px;
+            }
+        }
+    }
+
+    .boxRight{
+        > div{
+            h6{
+                font-size:18px;
+            }
+            p{
+                font-size:14px;
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+/* header style scss */
+
+.header{
+    width:100%;
+    margin:auto;
+    height:52px;
+    background:transparent;
+    position:absolute;
+    top:0;
+    left:0%;
+    z-index:99;
+}
+
+.headerWrap{
+    display:flex;
+    width:90%;
+    margin:auto;
+    height:100%;
+    max-width:1200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    gap:50px;
+    font-size:18px;
+    font-weight:500;
+
+    a{
+        width: max-content;
+    }
+}
+
+.menu{
+    display:none;
+    cursor: pointer;
+}
+
+@media (max-width:768px){
+    .header{
+        position:fixed;
+        background:#fff;
+    }
+    .nav{
+        display:none;
+    }
+
+    .headerWrap{
+
+        > img{
+            width:218px;
+            height:auto;
+        }
+    }
+
+    .menu{
+        display:flex;
+        width:40px;
+        height:40px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        animation:shadowBg 1s alternate infinite linear;
+        
+        a{
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    @keyframes shadowBg{
+        from{
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0);
+        }
+        to{
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+        }
+    }
+}

@@ -1,0 +1,50 @@
+/* main intro style scss */
+
+.section{
+    width:100%;
+    background:#F5F5F5;
+    padding:0px 0 120px;
+
+    > h6{
+        font-size:40px;
+        margin-bottom:40px;
+        text-align: center;
+    }
+}
+
+.swiper{
+
+    > div {
+        > div{
+            width:auto !important;
+        }
+       
+    }
+}
+
+@media (max-width:1024px) {
+    .swiper{
+
+        > div {
+            > div{
+                width:100% !important;
+
+                img{
+                    width:100%;
+                    height:auto;
+                }
+            }
+           
+        }
+    }  
+}
+
+@media (max-width:499px){
+    .section{
+        padding:0 0 50px;
+    
+        > h6{
+            font-size:32px;
+        }
+    }
+}
