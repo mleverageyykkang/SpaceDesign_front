@@ -17,34 +17,47 @@
     max-width:1200px;
     margin:auto;
 }
+.first{
+    flex:3.5;
+}
 .top_flex{
-    width:100%;
     display:flex;
     gap:5px 10px;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     justify-content:space-between;
     > div{
-        width:calc(50% - 5px);
+        width:calc(50% - 30px);
     }
     input{
         height:30px;
         width:100%;
         background:#f5f5f5;
-        border-radius: 0;
+        border-radius: 5px;
         font-size:14px;
         padding-left:5px;
     }
 }
 
 .bottom_flex{
-    width:100%;
+    flex:1;
+    text-align: center;
+    margin: 0 10px 0 10px;
     button{
-       width:100%;
+       width:60%;
        border-radius: 5px;
        background:#f5f5f5;
        color: #000;
        font-size:14px;
-       height:60px;
+       padding:10px 20px;
+    }
+}
+.last{
+    flex:2;
+    p{
+        color:white;
+    }
+    h1{
+        color:white;
     }
 }
 
@@ -69,6 +82,7 @@
 
 .phoneFlex{
     display:flex;
+    flex-grow:1;
     align-items: center;
 		color:#f5f5f5;
 

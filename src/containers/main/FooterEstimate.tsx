@@ -105,92 +105,86 @@ const EstimateForm = ({}) => {
     <>
       <div id="FooterEstimate" className={styles.section}>
         <form id="formElem" onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.top_flex}>
-            <div className={styles.flex}>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="성함"
-                defaultValue={formData.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.flex}>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                placeholder="지역"
-                defaultValue={formData.location}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.flex}>
-              <div className={styles.phoneFlex}>
+          <div className={styles.first}>
+            <div className={styles.top_flex}>
+              <div className={styles.flex}>
                 <input
                   type="text"
-                  id="firstPhone"
-                  name="firstPhone"
-                  placeholder="010"
-                  defaultValue={formData.firstPhone}
-                  onChange={handleChange}
-                />
-                -
-                <input
-                  type="text"
-                  id="middlePhone"
-                  name="middlePhone"
-                  placeholder="1234"
-                  defaultValue={formData.middlePhone}
-                  onChange={handleChange}
-                />
-                -
-                <input
-                  type="text"
-                  id="lastPhone"
-                  name="lastPhone"
-                  placeholder="5678"
-                  defaultValue={formData.lastPhone}
+                  id="name"
+                  name="name"
+                  placeholder="성함"
+                  defaultValue={formData.name}
                   onChange={handleChange}
                 />
               </div>
+              <div className={styles.flex}>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="지역"
+                  defaultValue={formData.location}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.flex} style={{ width: "100%" }}>
+                <div className={styles.phoneFlex}>
+                  <input
+                    type="text"
+                    id="firstPhone"
+                    name="firstPhone"
+                    placeholder="010"
+                    defaultValue={formData.firstPhone}
+                    onChange={handleChange}
+                  />
+                  -
+                  <input
+                    type="text"
+                    id="middlePhone"
+                    name="middlePhone"
+                    placeholder="1234"
+                    defaultValue={formData.middlePhone}
+                    onChange={handleChange}
+                  />
+                  -
+                  <input
+                    type="text"
+                    id="lastPhone"
+                    name="lastPhone"
+                    placeholder="5678"
+                    defaultValue={formData.lastPhone}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
             </div>
-            <div className={styles.flex} style={{width:'100%'}}>
-              <input
-                type="text"
-                id="services"
-                name="services"
-                defaultValue={formData.services}
-                onChange={handleChange}
-                style={{ display: "none" }}
-              />
-							<div className={styles.radioFlex}>
-							{serviceList.map((data) => (
-								<div className={styles.radio} key={data.id}>
-									<input
-										type="radio"
-										name="service_radio"
-										id={data.num}
-										onClick={handleOnChangeServiceSelectValue}
-										data-value={data.id}
-										data-name={data.name}
-									/>
-									<label htmlFor={data.num}>{data.name}</label>
-									</div>
-								))}
-							</div>
+            <div>
+              <div className={styles.flex} style={{ width: "100%" }}>
+                <input
+                  type="text"
+                  id="services"
+                  name="services"
+                  defaultValue={formData.services}
+                  onChange={handleChange}
+                  style={{ display: "none" }}
+                />
+                <div className={styles.radioFlex}>
+                  {serviceList.map((data) => (
+                    <div className={styles.radio} key={data.id}>
+                      <input
+                        type="radio"
+                        name="service_radio"
+                        id={data.num}
+                        onClick={handleOnChangeServiceSelectValue}
+                        data-value={data.id}
+                        data-name={data.name}
+                      />
+                      <label htmlFor={data.num}>{data.name}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className={styles.bottom_flex}>
-            <button
-              type="submit"
-              className={
-                getIsActiveTwo ? styles.buttonAction : styles.buttonDone
-              }
-            >
-              문의하기
-            </button>
             <div className={styles.checkboxFlex}>
               <input
                 onClick={isCheckBoxClickedTwo}
@@ -204,6 +198,20 @@ const EstimateForm = ({}) => {
                 <span onClick={openModal}>보기</span>
               </label>
             </div>
+          </div>
+          <div className={styles.bottom_flex}>
+            <button
+              type="submit"
+              className={
+                getIsActiveTwo ? styles.buttonAction : styles.buttonDone
+              }
+            >
+              문의하기
+            </button>
+          </div>
+          <div className={styles.last}>
+            <p>무료 상담 문의</p>
+            <h1>050-8202-1310</h1>
           </div>
         </form>
       </div>
