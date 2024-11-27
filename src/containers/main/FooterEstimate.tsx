@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, FormEvent, ChangeEvent } from "react";
+import React, { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import Image from "next/image";
 import styles from "./FooterEstimate.module.scss";
 
@@ -26,6 +26,9 @@ const EstimateForm = ({}) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [status, setStatus] = useState<string>("");
   const [checkBoxActiveTwo, setCheckboxActiveTwo] = useState(true);
+
+  const [isMobile, setIsMobile] = useState(false);
+
   const isCheckBoxClickedTwo = () => {
     setCheckboxActiveTwo(!checkBoxActiveTwo);
   };
@@ -41,10 +44,12 @@ const EstimateForm = ({}) => {
 
   const getIsActiveTwo = checkBoxActiveTwo === true;
 
-	const handleOnChangeServiceSelectValue = (
+  const handleOnChangeServiceSelectValue = (
     e: React.MouseEvent<HTMLInputElement>
   ) => {
-    const serviceValue = (e.target as HTMLDivElement).getAttribute("data-value");
+    const serviceValue = (e.target as HTMLDivElement).getAttribute(
+      "data-value"
+    );
 
     setFormData((prev: FormData) => ({
       ...prev,
@@ -52,12 +57,12 @@ const EstimateForm = ({}) => {
     }));
   };
 
-	const serviceList = [
-    { id: 1, name: "상가 인테리어", num:"service_radio_11" },
-		{ id: 2, name: "주거 인테리어", num:"service_radio_12"},
-    { id: 3, name: "종합 인테리어", num:"service_radio_13" },
-    { id: 4, name: "부분 인테리어", num:"service_radio_14" },
-    { id: 5, name: "기타 상담", num:"service_radio_15" },
+  const serviceList = [
+    { id: 1, name: "상가 인테리어", num: "service_radio_11" },
+    { id: 2, name: "주거 인테리어", num: "service_radio_12" },
+    { id: 3, name: "종합 인테리어", num: "service_radio_13" },
+    { id: 4, name: "부분 인테리어", num: "service_radio_14" },
+    { id: 5, name: "기타 상담", num: "service_radio_15" },
   ];
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -100,103 +105,93 @@ const EstimateForm = ({}) => {
       alert(`문의등록에 실패하였습니다.`);
     }
   };
+  useEffect(() => {
+    const updateLabel = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    updateLabel(); //최초 실행
+    window.addEventListener("resize", updateLabel);
+  }, []);
 
   return (
     <>
       <div id="FooterEstimate" className={styles.section}>
         <form id="formElem" onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.first}>
-            <div className={styles.top_flex}>
-              <div className={styles.flex}>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="성함"
-                  defaultValue={formData.name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles.flex}>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  placeholder="지역"
-                  defaultValue={formData.location}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles.flex} style={{ width: "100%" }}>
-                <div className={styles.phoneFlex}>
-                  <input
-                    type="text"
-                    id="firstPhone"
-                    name="firstPhone"
-                    placeholder="010"
-                    defaultValue={formData.firstPhone}
-                    onChange={handleChange}
-                  />
-                  -
-                  <input
-                    type="text"
-                    id="middlePhone"
-                    name="middlePhone"
-                    placeholder="1234"
-                    defaultValue={formData.middlePhone}
-                    onChange={handleChange}
-                  />
-                  -
-                  <input
-                    type="text"
-                    id="lastPhone"
-                    name="lastPhone"
-                    placeholder="5678"
-                    defaultValue={formData.lastPhone}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className={styles.flex} style={{ width: "100%" }}>
-                <input
-                  type="text"
-                  id="services"
-                  name="services"
-                  defaultValue={formData.services}
-                  onChange={handleChange}
-                  style={{ display: "none" }}
-                />
-                <div className={styles.radioFlex}>
-                  {serviceList.map((data) => (
-                    <div className={styles.radio} key={data.id}>
-                      <input
-                        type="radio"
-                        name="service_radio"
-                        id={data.num}
-                        onClick={handleOnChangeServiceSelectValue}
-                        data-value={data.id}
-                        data-name={data.name}
-                      />
-                      <label htmlFor={data.num}>{data.name}</label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className={styles.checkboxFlex}>
+          <div className={styles.top_flex}>
+            <div className={styles.flex}>
               <input
-                onClick={isCheckBoxClickedTwo}
-                type="checkbox"
-                id="privacyConsent"
-                name="privacyConsent_2"
-                defaultChecked={checkBoxActiveTwo}
+                type="text"
+                id="name"
+                name="name"
+                placeholder="성함 혹은 업체명"
+                defaultValue={formData.name}
+                onChange={handleChange}
               />
-              <label htmlFor="privacyConsent_2">
-                개인정보 수집 및 이용에 동의합니다.
-                <span onClick={openModal}>보기</span>
-              </label>
+            </div>
+            <div className={styles.flex}>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="지역을 입력해주세요"
+                defaultValue={formData.location}
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.flex}>
+              <div className={styles.phoneFlex}>
+                <input
+                  type="text"
+                  id="firstPhone"
+                  name="firstPhone"
+                  placeholder="010"
+                  defaultValue={formData.firstPhone}
+                  onChange={handleChange}
+                />
+                -
+                <input
+                  type="text"
+                  id="middlePhone"
+                  name="middlePhone"
+                  placeholder="1234"
+                  defaultValue={formData.middlePhone}
+                  onChange={handleChange}
+                />
+                -
+                <input
+                  type="text"
+                  id="lastPhone"
+                  name="lastPhone"
+                  placeholder="5678"
+                  defaultValue={formData.lastPhone}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className={styles.flex} style={{ width: "100%" }}>
+              <input
+                type="text"
+                id="services"
+                name="services"
+                defaultValue={formData.services}
+                onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              <div className={styles.radioFlex}>
+                {serviceList.map((data) => (
+                  <div className={styles.radio} key={data.id}>
+                    <input
+                      type="radio"
+                      name="service_radio"
+                      id={data.num}
+                      onClick={handleOnChangeServiceSelectValue}
+                      data-value={data.id}
+                      data-name={data.name}
+                    />
+                    <label htmlFor={data.num}>{data.name}</label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className={styles.bottom_flex}>
@@ -208,6 +203,21 @@ const EstimateForm = ({}) => {
             >
               문의하기
             </button>
+            <div className={styles.checkboxFlex}>
+              <input
+                onClick={isCheckBoxClickedTwo}
+                type="checkbox"
+                id="privacyConsent"
+                name="privacyConsent_2"
+                defaultChecked={checkBoxActiveTwo}
+              />
+              <label htmlFor="privacyConsent_2">
+                {isMobile
+                  ? "개인정보 수집 동의"
+                  : "개인정보 수집 및 이용에 동의합니다."}
+                <span onClick={openModal}>보기</span>
+              </label>
+            </div>
           </div>
           <div className={styles.last}>
             <p>무료 상담 문의</p>

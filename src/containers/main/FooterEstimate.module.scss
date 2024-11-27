@@ -17,47 +17,48 @@
     max-width:1200px;
     margin:auto;
 }
-.first{
-    flex:3.5;
-}
 .top_flex{
+    flex:2;
+    width:100%;
     display:flex;
     gap:5px 10px;
-    flex-wrap:nowrap;
+    flex-wrap:wrap;
     justify-content:space-between;
-    > div{
-        width:calc(50% - 30px);
+    > div{ // 직접적인 자식 선택자 (추가한 설정)
+        width:calc(33% - 5px);
+        height: 30px;
     }
-    input{
+    input{ // '>' 없으면 후손 선택자
         height:30px;
         width:100%;
         background:#f5f5f5;
-        border-radius: 5px;
+        border-radius: 0;
         font-size:14px;
         padding-left:5px;
     }
 }
 
 .bottom_flex{
+    width:100%;
+    //내가 추가한 설정
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:15px 10px;  
     flex:1;
-    text-align: center;
-    margin: 0 10px 0 10px;
+    //추가한 설정 끝.
     button{
-       width:60%;
-       border-radius: 5px;
+       width:50%;
+       border-radius: 30px; //추가설정 (원래 5)
        background:#f5f5f5;
        color: #000;
-       font-size:14px;
-       padding:10px 20px;
+       font-size:14px !important;
+       height:30px;
     }
-}
-.last{
-    flex:2;
-    p{
-        color:white;
-    }
-    h1{
-        color:white;
+    //추가 설정
+    button:hover{
+        background-color: #abab7a;
+        color:white
     }
 }
 
@@ -66,7 +67,6 @@
     align-items: center;
     gap:6px;
     margin-top:10px;
-
     label{
         font-size:14px;
 				color:#f5f5f5;
@@ -82,7 +82,6 @@
 
 .phoneFlex{
     display:flex;
-    flex-grow:1;
     align-items: center;
 		color:#f5f5f5;
 
@@ -91,17 +90,30 @@
 				color:#000;
     }
 }
-
+.last{
+    flex:1;
+    // width:30%;
+    > p,h1{
+        color:white
+    }
+}
 .radio{
 	display:flex;
 	align-items: center;
 	gap:5px;
-
 	input{
 		width: 14px;
 		height: 14px;
 		cursor: pointer;
+        appearance: none;
+        border-radius: 0;
 	}
+    input:checked{
+        width:10px;
+        height: 10px;
+        border: 2px solid #fff;
+        background:#6C6DDC;
+    }
 	label{
 		font-size:14px;
 		color:#fff;
@@ -114,6 +126,8 @@
 	width: 100%;
 	gap:10px;
 	margin:10px 0;
+    position: relative;
+    z-index: 3;
 }
 
 .select {
@@ -252,7 +266,88 @@
 }
 
 @media (max-width:499px){
-	.radioFlex{
-		flex-wrap: wrap;
-	}
+    .form{
+        flex-direction: row;
+    }
+    .section{
+        padding:10px;
+    }
+    .bottom_flex{
+        gap:1px; //추가 설정
+        button{
+           width:100%;
+           border-radius: 5px;
+           background:#f5f5f5;
+           color: #000;
+           font-size:9px;
+           height:50px;
+        }
+    }
+
+    .top_flex{
+        width:50%;
+        display:flex;
+        flex-direction: column;
+        gap:5px;
+        flex-wrap:wrap;
+        justify-content:space-between;
+        > div{
+            width:100%;
+            height:20px;
+            display:flex;
+        }
+        input{
+            height:20px;
+            width:100%;
+            background:#f5f5f5;
+            border-radius: 0;
+            font-size:10px;
+            padding-left:5px;
+        }
+    }
+    .phoneFlex{
+        height:20px;
+        input{
+            height:20px;
+        }
+    }
+    .last{
+        display: none;
+    }
+    .radio{
+        display:flex;
+        align-items: center;
+        gap:3px;
+        input{
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+            vertical-align: middle;
+            appearance: none;
+            border-radius: 0;
+        }
+        input:checked{
+            width:10px;
+            height: 10px;
+            border: 2px solid #fff;
+            background:#6C6DDC;
+        }
+        label{
+            font-size:10px;
+            color:#fff;
+            width:max-content;
+            cursor: pointer;
+        }
+    }
+
+    .radioFlex{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        gap:5px;
+        margin:0;
+    }
+    .checkboxFlex{
+        margin-top:5px;
+    }
 }
