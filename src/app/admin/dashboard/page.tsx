@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "./adminSidebar";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,16 +41,16 @@ export default function DashboardPage() {
     "관리",
   ];
   const tbody = [
-    "No.",
-    "문의 IP",
-    "문의시간",
-    "기기",
-    "지역",
-    "서비스 유형",
-    "문의사항",
-    "연락처",
-    "상담사",
-    "관리",
+    "1",
+    "00.000.00.00",
+    "2024-11-24 11:08:59",
+    "PC",
+    "서울",
+    "상가 인테리어",
+    "상가 인테리어 문의",
+    "01012345678",
+    "counselor1",
+    "삭제",
   ];
   return (
     <>
@@ -64,7 +65,9 @@ export default function DashboardPage() {
             borderBottom: "1px #000 solid",
           }}
         >
-          <h1>SpaceDesign</h1>
+          <h1>
+            <Link href="/admin/dashboard">SpaceDesign</Link>
+          </h1>
           <div>
             <button style={{ border: "1px #000 solid" }}>로그아웃</button>
           </div>
@@ -86,6 +89,15 @@ export default function DashboardPage() {
                   ))}
                 </tr>
               </thead>
+              <tbody>
+                <tr>
+                  {tbody.map((name) => (
+                    <th key={name} scope="col">
+                      {name}
+                    </th>
+                  ))}
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>

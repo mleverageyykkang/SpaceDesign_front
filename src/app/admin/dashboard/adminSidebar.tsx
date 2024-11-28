@@ -12,6 +12,7 @@ export default function adminSidebar() {
         flex: "1",
         borderRight: "1px black solid",
         height: "1000px",
+        gap: "5px",
       }}
     >
       <div>
