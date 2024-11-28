@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import AdminSidebar from "./adminSidebar";
 
 export default function DashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,16 +14,82 @@ export default function DashboardPage() {
       .find((row) => row.startsWith("auth_token="));
     if (!token) {
       // 로그인되지 않은 경우 로그인 페이지로 리디렉션
-      router.push("/admin/login");
+      // router.push("/admin/login");
     } else {
       setIsAuthenticated(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isAuthenticated) {
-    return <p>로딩 중...</p>; // 로딩 중 화면
-  }
+  // if (!isAuthenticated) {
+  //   return (
+  //     <p> 로딩 중...</p> // 로딩 중 화면
+  //   );
+  // }
 
-  return <h1>대시보드</h1>;
+  const thead = [
+    "No.",
+    "문의 IP",
+    "문의시간",
+    "기기",
+    "지역",
+    "서비스 유형",
+    "문의사항",
+    "연락처",
+    "상담사",
+    "관리",
+  ];
+  const tbody = [
+    "No.",
+    "문의 IP",
+    "문의시간",
+    "기기",
+    "지역",
+    "서비스 유형",
+    "문의사항",
+    "연락처",
+    "상담사",
+    "관리",
+  ];
+  return (
+    <>
+      {/* container */}
+      <div style={{ height: "1000px" }}>
+        {/* header */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderBottom: "1px #000 solid",
+          }}
+        >
+          <h1>SpaceDesign</h1>
+          <div>
+            <button style={{ border: "1px #000 solid" }}>로그아웃</button>
+          </div>
+        </div>
+        {/* main */}
+        <div style={{ display: "flex" }}>
+          {/* sidebar */}
+          <AdminSidebar />
+          {/* table */}
+          <div style={{ flex: "5" }}>
+            <h4>문의 내역</h4>
+            <table style={{ width: "100%", border: "1px black solid" }}>
+              <thead style={{ backgroundColor: "lightgrey" }}>
+                <tr>
+                  {thead.map((name) => (
+                    <th key={name} scope="col">
+                      {name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
